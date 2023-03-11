@@ -51,9 +51,9 @@ public class SocksStorageImplTest {
         when(socksRepository.findByColorAndCottonPartAfter(anyString(), anyInt())).thenReturn(Collections.emptyList());
         when(socksRepository.findByColorAndCottonPartBefore(anyString(), anyInt())).thenReturn(Collections.emptyList());
 
-        int resultEqual = out.getQuantityOfSocksBy("black", OperationEnum.equal, 0);
-        int resultMoreThan = out.getQuantityOfSocksBy("black", OperationEnum.moreThan, 0);
-        int resultLessThan = out.getQuantityOfSocksBy("black", OperationEnum.lessThan, 0);
+        int resultEqual = out.getQuantityOfSocks("black", OperationEnum.equal, 0);
+        int resultMoreThan = out.getQuantityOfSocks("black", OperationEnum.moreThan, 0);
+        int resultLessThan = out.getQuantityOfSocks("black", OperationEnum.lessThan, 0);
 
         assertThat(resultEqual).isEqualTo(0);
         assertThat(resultMoreThan).isEqualTo(0);
@@ -66,9 +66,9 @@ public class SocksStorageImplTest {
         when(socksRepository.findByColorAndCottonPartAfter(anyString(), anyInt())).thenReturn(List.of(testSocks));
         when(socksRepository.findByColorAndCottonPartBefore(anyString(), anyInt())).thenReturn(List.of(testSocks));
 
-        int resultEqual = out.getQuantityOfSocksBy("black", OperationEnum.equal, 0);
-        int resultMoreThan = out.getQuantityOfSocksBy("black", OperationEnum.moreThan, 0);
-        int resultLessThan = out.getQuantityOfSocksBy("black", OperationEnum.lessThan, 0);
+        int resultEqual = out.getQuantityOfSocks("black", OperationEnum.equal, 0);
+        int resultMoreThan = out.getQuantityOfSocks("black", OperationEnum.moreThan, 0);
+        int resultLessThan = out.getQuantityOfSocks("black", OperationEnum.lessThan, 0);
 
         assertThat(resultEqual).isEqualTo(testSocks.getQuantity());
         assertThat(resultMoreThan).isEqualTo(testSocks.getQuantity());
