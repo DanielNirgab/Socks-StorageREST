@@ -1,7 +1,10 @@
 package com.example.socksstoragerest.entity;
 
-import jakarta.persistence.*;
+
 import lombok.Data;
+
+import javax.persistence.*;
+
 
 @Entity
 @Data
@@ -15,5 +18,7 @@ public class SocksEntity {
     private Integer quantity;
     private String color;
 
-
+    public void setColor(String color) {
+            this.color = color.toLowerCase();
+    }
 }

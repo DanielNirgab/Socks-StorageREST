@@ -2,24 +2,26 @@ package com.example.socksstoragerest.controller;
 
 
 import com.example.socksstoragerest.constant.OperationEnum;
+import com.example.socksstoragerest.dto.SocksDto;
 import com.example.socksstoragerest.entity.SocksEntity;
 import com.example.socksstoragerest.service.SocksStorageService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import jakarta.validation.Valid;
+
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import javax.validation.Valid;
 
 
 @RequiredArgsConstructor
 @RestController
+@RequestMapping("/socks")
 public class SocksStorageController {
     private final Logger logger = LoggerFactory.getLogger(SocksStorageController.class);
     private final SocksStorageService socksService;
@@ -30,10 +32,10 @@ public class SocksStorageController {
                     @ApiResponse(responseCode = "400", description = "Missing or incompatible params.", content = @Content),
                     @ApiResponse(responseCode = "500", description = "Server side error occurs.", content = @Content)
             })
-    @PostMapping(path = "/socks/income")
-    public ResponseEntity<SocksEntity> addSocksToStock(@Valid @RequestBody SocksEntity socksEntity) {
+    @PostMapping(path = "/income")
+    public ResponseEntity<SocksDto> addSocksToStock(@Valid @RequestBody SocksDto socksDto) {
         logger.info("Was invoked 'addSocksToStock' method from {}", SocksStorageController.class.getSimpleName());
-        socksService.addSocks(socksEntity);
+        socksService.addSocks(socksDto);
         return ResponseEntity.ok().build();
     }
 
@@ -44,7 +46,7 @@ public class SocksStorageController {
                     @ApiResponse(responseCode = "400", description = "Missing or incompatible params.", content = @Content),
                     @ApiResponse(responseCode = "500", description = "Server side error occurs.", content = @Content)
             })
-    @GetMapping("/socks")
+    @GetMapping
     public ResponseEntity<Integer> getQuantityOfSocksBy(@RequestParam String color,
                                                         @RequestParam OperationEnum operation,
                                                         @RequestParam Integer cottonPart) {
@@ -58,16 +60,10 @@ public class SocksStorageController {
                     @ApiResponse(responseCode = "400", description = "Missing or incompatible params.", content = @Content),
                     @ApiResponse(responseCode = "500", description = "Server side error occurs.", content = @Content)
             })
-    @PostMapping(path = "/socks/outcome")
-    public ResponseEntity<SocksEntity> takeSocksFromStorage(@Valid @RequestBody SocksEntity socksEntity) {
+    @PostMapping(path = "/outcome")
+    public ResponseEntity<SocksDto> takeSocksFromStorage(@Valid @RequestBody SocksDto socksDto) {
         logger.info("Was invoked 'takeSocksFromStorage' method from {}", SocksStorageController.class.getSimpleName());
-        socksService.removeSocks(socksEntity);
+        socksService.removeSocks(socksDto);
         return ResponseEntity.ok().build();
     }
-    @GetMapping()
-    public ResponseEntity<List<SocksEntity>> getInfo() {
-        logger.info("Was invoked 'getQualityOfSocksBy' method from {}", SocksStorageController.class.getSimpleName());
-        return ResponseEntity.ok(socksService.getInfo());
-    }
-
 }
