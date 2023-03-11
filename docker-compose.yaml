@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: socks-storage-db
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: storekeeper
+      POSTGRES_PASSWORD: qwerty
+      POSTGRES_DB: socks-storage

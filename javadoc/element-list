@@ -1,0 +1,10 @@
+com.example.socksstoragerest
+com.example.socksstoragerest.constant
+com.example.socksstoragerest.controller
+com.example.socksstoragerest.dto
+com.example.socksstoragerest.entity
+com.example.socksstoragerest.exception
+com.example.socksstoragerest.mapper
+com.example.socksstoragerest.repository
+com.example.socksstoragerest.service
+com.example.socksstoragerest.service.impl
