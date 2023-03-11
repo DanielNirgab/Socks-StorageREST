@@ -8,7 +8,7 @@ import com.example.socksstoragerest.exception.WrongColorException;
 
 
 public interface SocksStorageService {
-    int getQuantityOfSocksBy(String color, OperationEnum operation, Integer cottonPart);
+    int getQuantityOfSocks(String color, OperationEnum operation, Integer cottonPart);
 
     void addSocks(SocksDto socksDto) throws WrongColorException;
 

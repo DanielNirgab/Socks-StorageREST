@@ -35,8 +35,8 @@ public class SocksStorageImpl implements SocksStorageService {
      */
 
     @Override
-    public int getQuantityOfSocksBy(String color, OperationEnum operation, Integer cottonPart) {
-        logger.info("Was invoked 'getQuantityOfSocksBy' method from {}", SocksStorageImpl.class.getSimpleName());
+    public int getQuantityOfSocks(String color, OperationEnum operation, Integer cottonPart) {
+        logger.info("Was invoked 'getQuantityOfSocks' method from {}", SocksStorageImpl.class.getSimpleName());
         Collection<SocksEntity> foundSocks = new ArrayList<>();
         switch (operation) {
             case equal -> {
