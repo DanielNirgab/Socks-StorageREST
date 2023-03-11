@@ -2,16 +2,16 @@ package com.example.socksstoragerest.service;
 
 
 import com.example.socksstoragerest.constant.OperationEnum;
-import com.example.socksstoragerest.entity.SocksEntity;
+import com.example.socksstoragerest.dto.SocksDto;
+import com.example.socksstoragerest.exception.SocksPairNotFound;
+import com.example.socksstoragerest.exception.WrongColorException;
 
-import java.util.List;
 
 public interface SocksStorageService {
     int getQuantityOfSocksBy(String color, OperationEnum operation, Integer cottonPart);
 
-    void addSocks(SocksEntity socks);
+    void addSocks(SocksDto socksDto) throws WrongColorException;
 
-    void removeSocks(SocksEntity socks);
+    void removeSocks(SocksDto socksDto) throws SocksPairNotFound;
 
-    List<SocksEntity> getInfo();
 }
